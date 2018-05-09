@@ -1,6 +1,14 @@
+import axios from 'axios';
+import lodash from 'lodash';
+import jquery from 'jquery';
+import moment from 'moment';
+import Form from './utils/Form';
 
-window._ = require('lodash');
+window._ = lodash;
 window.Popper = require('popper.js').default;
+window.moment = moment;
+window.Form = Form;
+
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -9,7 +17,7 @@ window.Popper = require('popper.js').default;
  */
 
 try {
-    window.$ = window.jQuery = require('jquery');
+    window.$ = window.jQuery = jquery
 
     require('bootstrap');
 } catch (e) {}
@@ -20,8 +28,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = require('axios');
-
+window.axios = axios;
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**
@@ -38,19 +45,12 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
-/**
- * Echo exposes an expressive API for subscribing to channels and listening
- * for events that are broadcast by Laravel. Echo and event broadcasting
- * allows your team to easily build robust real-time web applications.
- */
+import fontawesome from '@fortawesome/fontawesome'
+import regular from '@fortawesome/fontawesome-free-regular'
+import solid from '@fortawesome/fontawesome-free-solid'
+import brands from '@fortawesome/fontawesome-free-brands'
 
-// import Echo from 'laravel-echo'
+fontawesome.library.add(regular)
+fontawesome.library.add(solid)
+fontawesome.library.add(brands)
 
-// window.Pusher = require('pusher-js');
-
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     encrypted: true
-// });

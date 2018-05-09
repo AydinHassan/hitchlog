@@ -10419,11 +10419,109 @@ a.text-dark:focus {
 
 .icon-action {
   font-size: 2em;
-  color: tomato;
+  color: #355359;
   cursor: pointer;
 }
 
 .icon-action:hover {
-  color: #ffa494;
+  color: #528089;
+}
+
+.div-table {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  font-size: .8rem;
+  margin: 0.5rem;
+  line-height: 1.5;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+}
+
+.div-table-hover > .div-table-row:hover:not(.div-table-header) {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+
+.div-table-header > .div-table-cell {
+  font-size: 0.9rem;
+  font-weight: bold;
+  border-bottom: 2px solid #477078;
+  border-top: 1px solid #477078;
+}
+
+.div-table-row {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+}
+
+.div-table-cell {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -ms-flex-preferred-size: 0;
+      flex-basis: 0;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0px;
+  white-space: nowrap;
+  border-bottom: 1px solid #477078;
+}
+
+.space-around {
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.alert {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 4px solid #c3e6cb;
+  border-radius: 0px;
+}
+
+.button-primary {
+  padding: 10px 40px;
+  font-weight: bold;
+}
+
+.w-max {
+  width: 100%;
+}
+
+#journey-form {
+  border-top: 4px solid #38C172;
+  background-color: white;
+  -webkit-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 20px;
+}
+
+.journey-form-edit {
+  border-top: 4px solid #F6993F;
 }
 

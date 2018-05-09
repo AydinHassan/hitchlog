@@ -14,8 +14,9 @@ class AddJourneyTimings extends Migration
     public function up()
     {
         Schema::table('journeys', function (Blueprint $table) {
-            $table->dateTime('start')->nullable();
-            $table->dateTime('end')->nullable();
+            $table->dateTime('date')->nullable();
+            $table->time('start_time')->nullable();
+            $table->time('end_time')->nullable();
         });
     }
 

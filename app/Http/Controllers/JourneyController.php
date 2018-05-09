@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Journey;
+use App\User;
 use Illuminate\Http\Request;
 
 class JourneyController extends Controller
@@ -19,7 +20,7 @@ class JourneyController extends Controller
      */
     public function index()
     {
-        //
+        return Journey::with('user')->orderBy('start', 'desc')->get();
     }
 
     /**
@@ -40,19 +41,22 @@ class JourneyController extends Controller
      */
     public function store(Request $request)
     {
-        $journey = new Journey;
-        $journey->start_location = $request->get('start_location');
-        $journey->end_location = $request->get('end_location');
-        $journey->start = $request->get('start');
-        $journey->end = $request->get('end');
-        $journey->driver_name = $request->get('driver_name');
-        $journey->notes = $request->get('notes');
-        $journey->user_id = $request->user()->id;
-
-        $journey->save();
-
-        flash('Journey created!');
-        return redirect('/');
+        $data = $request->validate([
+            'start_location' => 'required|min:2|max:255',
+            'end_location' => 'required|min:2|max:255',
+            'date' => 'required|date|before:now',
+            'start_time' => 'date_format:H:i',
+            'end_time' => 'date_format:H:i',
+            'driver_name' => 'nullable|max:255',
+            'notes' => 'nullable|max:512',
+        ]);        
+        
+        $journey = $request
+            ->user()
+            ->journeys()
+            ->create($data);
+        
+        return $journey->load('user');
     }
 
     /**
@@ -74,7 +78,6 @@ class JourneyController extends Controller
      */
     public function edit(Journey $journey)
     {
-        
         return view('journey.edit', ['journey' => $journey]);
     }
 
@@ -87,18 +90,21 @@ class JourneyController extends Controller
      */
     public function update(Request $request, Journey $journey)
     {
-        $journey->start_location = $request->get('start_location');
-        $journey->end_location = $request->get('end_location');
-        $journey->start = $request->get('start');
-        $journey->end = $request->get('end');
-        $journey->driver_name = $request->get('driver_name');
-        $journey->notes = $request->get('notes');
-        $journey->user_id = $request->user()->id;
+        $data = $request->validate([
+            'start_location' => 'required|min:2|max:255',
+            'end_location' => 'required|min:2|max:255',
+            'date' => 'required|date|before:now',
+            'start_time' => 'date_format:H:i',
+            'end_time' => 'date_format:H:i',
+            'driver_name' => 'nullable|max:255',
+            'notes' => 'nullable|max:512',
+        ]);
+        
+        $journey
+            ->fill($data)
+            ->save();
 
-        $journey->save();
-
-        flash('Journey updated!');
-        return redirect('/');        
+        return $journey->load('user');  
     }
 
     /**
@@ -110,9 +116,5 @@ class JourneyController extends Controller
     public function destroy(Journey $journey)
     {
         $journey->delete();
-        
-        flash('Journey deleted!');
-        
-        return redirect('/');
     }
 }

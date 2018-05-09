@@ -7,7 +7,12 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+import Vue from 'vue';
+import { Alert } from 'bootstrap-vue/es/components';
+
+Vue.use(Alert);
+
+window.Vue = Vue;
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -15,8 +20,30 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+
+Vue.component('add-journey', require('./components/AddJourney.vue'));
+Vue.component('edit-journey', require('./components/EditJourney.vue'));
+Vue.component('list-journeys', require('./components/ListJourneys.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    
+    data : {
+        editing : false
+    },
+    
+    mounted () {
+        this.$root.$on('journey.edit', journey => {
+            this.editing = true;
+        });
+        
+        this.$root.$on('journey.edited', journey => {
+            this.editing = false;
+        });
+        
+        this.$root.$on('journey.edit.cancel', () => {
+            this.editing = false;
+        });
+    }
 });
+

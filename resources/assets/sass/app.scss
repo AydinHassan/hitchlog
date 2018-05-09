@@ -15,10 +15,86 @@
 
 .icon-action {
   font-size:2em;
-  color: tomato;
+  color: #355359;
   cursor: pointer
 }
 
 .icon-action:hover {
-  color: lighten(tomato, 15%);
+  color: lighten(#355359, 15%);
+}
+
+.div-table {
+  display: flex;
+  flex-flow: column nowrap;
+  font-size: .8rem;
+  margin: 0.5rem;
+  line-height: 1.5;
+  flex: 1 1 auto;
+}
+
+.div-table-hover > .div-table-row:hover:not(.div-table-header) {
+  background-color: rgba(0, 0, 0, 0.075);
+} 
+
+.div-table-header > .div-table-cell {
+  font-size: 0.9rem;
+  font-weight: bold;
+  border-bottom: 2px solid #477078;
+  border-top: 1px solid #477078;
+}
+
+.div-table-row {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.div-table-cell {
+  display: flex;
+  flex-flow: row nowrap;
+  flex-grow: 1;
+  flex-basis: 0;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0px;
+  white-space: nowrap;
+  border-bottom: 1px solid #477078;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+
+.alert {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 4px solid #c3e6cb;
+  border-radius: 0px;
+}
+
+.button-primary {
+  padding: 10px 40px;
+  font-weight: bold;
+}
+
+.w-max {
+  width: 100%;
+}
+
+#journey-form {
+  border-top: 4px solid #38C172;
+  background-color: white;
+  box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
+  border-radius: 4px;
+  padding: 20px
+}
+
+.journey-form-edit {
+  border-top: 4px solid #F6993F;
 }
