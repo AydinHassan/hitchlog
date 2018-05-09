@@ -1,26 +1,9 @@
 import axios from 'axios';
-import lodash from 'lodash';
-import jquery from 'jquery';
 import moment from 'moment';
 import Form from './utils/Form';
 
-window._ = lodash;
-window.Popper = require('popper.js').default;
 window.moment = moment;
 window.Form = Form;
-
-
-/**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
- */
-
-try {
-    window.$ = window.jQuery = jquery
-
-    require('bootstrap');
-} catch (e) {}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -44,13 +27,4 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
-
-import fontawesome from '@fortawesome/fontawesome'
-import regular from '@fortawesome/fontawesome-free-regular'
-import solid from '@fortawesome/fontawesome-free-solid'
-import brands from '@fortawesome/fontawesome-free-brands'
-
-fontawesome.library.add(regular)
-fontawesome.library.add(solid)
-fontawesome.library.add(brands)
 

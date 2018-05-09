@@ -8,7 +8,7 @@
 require('./bootstrap');
 
 import Vue from 'vue';
-import { Alert } from 'bootstrap-vue/es/components';
+import Alert from 'bootstrap-vue/es/components/alert';
 
 Vue.use(Alert);
 
@@ -20,10 +20,13 @@ window.Vue = Vue;
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import AddJourney from './components/AddJourney';
+import EditJourney from './components/EditJourney';
+import ListJourneys from './components/ListJourneys';
 
-Vue.component('add-journey', require('./components/AddJourney.vue'));
-Vue.component('edit-journey', require('./components/EditJourney.vue'));
-Vue.component('list-journeys', require('./components/ListJourneys.vue'));
+Vue.component('add-journey', AddJourney);
+Vue.component('edit-journey', EditJourney);
+Vue.component('list-journeys', ListJourneys);
 
 const app = new Vue({
     el: '#app',
