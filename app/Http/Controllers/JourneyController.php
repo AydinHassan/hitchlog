@@ -20,7 +20,7 @@ class JourneyController extends Controller
      */
     public function index()
     {
-        return Journey::with('user')->orderBy('start', 'desc')->get();
+        return Journey::with('user')->get();
     }
 
     /**
