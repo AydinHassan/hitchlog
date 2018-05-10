@@ -15,23 +15,21 @@
                 <div class="div-table-cell">Added By</div>
                 <div class="div-table-cell"></div>
             </div>
-            <div v-for="journey in descendingJourneys">
-                <div class="div-table-row">
-                    <div class="div-table-cell">{{ journey.start_location }}</div>
-                    <div class="div-table-cell">{{ journey.end_location }}</div>
-                    <div class="div-table-cell">{{ journey.date | date }}</div>
-                    <div class="div-table-cell">{{ journey.start_time }}</div>
-                    <div class="div-table-cell">{{ journey.end_time }}</div>
-                    <div class="div-table-cell">{{ journey.driver_name }}</div>
-                    <div class="div-table-cell">{{ journey.notes }}</div>
-                    <div class="div-table-cell" >{{ journey.user.name }}</div>
-                    <div class="div-table-cell space-around">
-                        <div>
-                            <a href="#" v-on:click.prevent="editJourney(journey)"><i class="fas fa-edit icon-action"></i></a>
-                        </div>
-                        <div>
-                            <a href="#" v-on:click.prevent="deleteJourney(journey.id)"><i class="fas fa-times-circle icon-action"></i></a>
-                        </div>
+            <div class="div-table-row" v-for="journey in descendingJourneys">
+                <div class="div-table-cell">{{ journey.start_location }}</div>
+                <div class="div-table-cell">{{ journey.end_location }}</div>
+                <div class="div-table-cell">{{ journey.date | date }}</div>
+                <div class="div-table-cell">{{ journey.start_time }}</div>
+                <div class="div-table-cell">{{ journey.end_time }}</div>
+                <div class="div-table-cell">{{ journey.driver_name }}</div>
+                <div class="div-table-cell">{{ journey.notes }}</div>
+                <div class="div-table-cell" >{{ journey.user.name }}</div>
+                <div class="div-table-cell space-around">
+                    <div>
+                        <a href="#" v-on:click.prevent="editJourney(journey)"><i class="fas fa-edit icon-action"></i></a>
+                    </div>
+                    <div>
+                        <a href="#" v-on:click.prevent="deleteJourney(journey.id)"><i class="fas fa-times-circle icon-action"></i></a>
                     </div>
                 </div>
             </div>
