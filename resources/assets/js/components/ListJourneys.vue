@@ -39,7 +39,7 @@
         
         <div class="journeys-mobile">
             <template v-for="journey in descendingJourneys">
-                <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+                <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white mb-3">
                     <div class="px-3 py-3">
                         <div class="flex space-between">
                             <div class="font-bold text-xl">{{ journey.start_location }} <i class="fas fa-arrow-circle-right px-2 color-purple-light"></i> {{ journey.end_location }}</div>
