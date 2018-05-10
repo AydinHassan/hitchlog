@@ -15,6 +15,7 @@ class Journey extends Model
         'driver_name',
         'notes'
     ];
+    
     /**
      * Get the user that owns the phone.
      */
@@ -22,4 +23,14 @@ class Journey extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function getStartTimeAttribute(string $startTime) : string
+    {
+        return implode(':', explode(':', $startTime, 2));
+    }
+    
+    public function getEndTimeAttribute(string $endTime) : string
+    {
+        return implode(':', explode(':', $endTime, 2));
+    }    
 }
