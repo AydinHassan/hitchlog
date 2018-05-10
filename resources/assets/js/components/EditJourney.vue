@@ -144,6 +144,9 @@
                         notes: ''
                     },
                     {
+                        date: function (dateTime) {
+                            return moment(dateTime).format('YYYY-MM-DD')
+                        },
                         start_time: function (dateTime) {
                             return moment(dateTime).format('HH:mm');
                         },
