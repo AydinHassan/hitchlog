@@ -3,7 +3,7 @@
         <b-alert variant="success" :show="deleteSuccessCountDown" @dismiss-count-down="deleteCountDownChanged">Successfully deleted!</b-alert>
         <b-alert variant="success" :show="editSuccessCountDown" @dismiss-count-down="editCountDownChanged">Successfully Edited!</b-alert>
 
-        <table class="table table-hover">
+        <table class="table table-hover journeys-desktop">
             <thead>
                 <th scope="col" class="">Start Location</th>
                 <th scope="col" class="">End Location</th>
@@ -36,6 +36,33 @@
                 </tr>
             </tbody>
         </table>
+        
+        <div class="journeys-mobile">
+            <template v-for="journey in descendingJourneys">
+                <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+                    <div class="px-3 py-3">
+                        <div class="flex space-between">
+                            <div class="font-bold text-xl">{{ journey.start_location }} <i class="fas fa-arrow-circle-right px-2 color-purple-light"></i> {{ journey.end_location }}</div>
+                            <div class="flex space-around">
+                                <div>
+                                    <a href="#" v-on:click.prevent="editJourney(journey)"><i class="fas fa-edit icon-action-mobile"></i></a>
+                                </div>
+                                <div>
+                                    <a href="#" v-on:click.prevent="deleteJourney(journey.id)"><i class="fas fa-times-circle icon-action-mobile"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-sm text-grey-dark flex items-center mb-3"><i class="fas fa-car pr-2"></i>{{ journey.driver_name }}</p>
+                        <p class="text-grey-darker text-base pb-0">{{ journey.notes }}</p>
+                    </div>
+                    <div class="px-3 pb-3">
+                        <span class="inline-block bg-grey-lighter px-2 py-1 text-sm font-semibold text-grey-darker mr-2">{{ journey.date | date }}</span>
+                        <span class="inline-block bg-grey-lighter px-2 py-1 text-sm font-semibold text-grey-darker mr-2">{{ journey.start_time }} - {{ journey.end_time }}</span>
+                        <span class="inline-block bg-grey-lighter px-2 py-1 text-sm font-semibold text-grey-darker mr-2">{{ journey.user.name }}</span>
+                    </div>
+                </div>
+            </template>    
+        </div>
     </div>
 </template>
 

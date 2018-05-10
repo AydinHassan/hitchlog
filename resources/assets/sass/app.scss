@@ -19,8 +19,19 @@
   cursor: pointer
 }
 
+.icon-action-mobile {
+  font-size: 1.2rem;
+  color: #5661B3;
+  cursor: pointer;
+  padding: 0.2rem;
+}
+
 .icon-action:hover {
   color: lighten(#355359, 15%);
+}
+
+.icon-action-mobile:hover {
+  color: lighten(#5661B3, 15%);
 }
 
 .flex {
@@ -29,6 +40,10 @@
 
 .space-around {
   justify-content: space-around;
+}
+
+.space-between {
+  justify-content: space-between;
 }
 
 .alert {
@@ -58,4 +73,107 @@
 
 .journey-form-edit {
   border-top: 4px solid #F6993F;
+}
+
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+}
+
+.mb-2 {
+  margin-bottom: .5rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.text-base {
+  font-size: 1rem;
+}
+
+.text-grey-darker {
+  color: #606f7b;
+}
+
+.text-sm {
+  font-size: .875rem;
+}
+
+.text-grey-darker {
+  color: #606f7b;
+}
+
+.py-1 {
+  padding-top: .25rem;
+  padding-bottom: .25rem;
+}
+
+.mr-2 {
+  margin-right: .5rem;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.bg-grey-lighter {
+  background-color: #f1f5f8;
+}
+
+.shadow-lg {
+  box-shadow: 0 15px 30px 0 rgba(0,0,0,.11), 0 5px 15px 0 rgba(0,0,0,.08);
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.max-w-sm {
+  max-width: 30rem;
+}
+
+.rounded {
+  border-radius: .25rem;
+}
+
+.bg-white {
+  background-color: white;
+}
+
+.color-purple-light {
+  color: #A779E9;
+}
+
+.text-grey-dark {
+  color: #8795a1;
+}
+
+.items-center {
+  align-items: center;
+}
+
+@media screen and (max-width: 600px) {
+  .journeys-desktop {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .journeys-mobile {
+    display: none;
+  }
 }
