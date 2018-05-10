@@ -26,11 +26,17 @@ class Journey extends Model
 
     public function getStartTimeAttribute(string $startTime) : string
     {
-        return implode(':', explode(':', $startTime, 2));
+        return $this->parseHourAndMinute($startTime);
     }
     
     public function getEndTimeAttribute(string $endTime) : string
     {
-        return implode(':', explode(':', $endTime, 2));
-    }    
+        return $this->parseHourAndMinute($endTime);
+    }
+
+    private function parseHourAndMinute(string $time) : string
+    {
+        $parts = explode(':', $time);
+        return $parts[0] . ':' . $parts[1];
+    }
 }
