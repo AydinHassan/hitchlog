@@ -11,12 +11,8 @@
 |
 */
 
-use App\Journey;
-use Illuminate\Http\Request;
-
 Route::get('/', function () {
-    $journeys = Journey::orderBy('start', 'desc')->get();    
-    return view('welcome', ['journeys' => $journeys]);
+    return view('welcome');
 })->middleware('auth');
 
 Route::resource('journey', 'JourneyController');
