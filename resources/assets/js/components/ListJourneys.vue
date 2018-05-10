@@ -2,38 +2,40 @@
     <div>
         <b-alert variant="success" :show="deleteSuccessCountDown" @dismiss-count-down="deleteCountDownChanged">Successfully deleted!</b-alert>
         <b-alert variant="success" :show="editSuccessCountDown" @dismiss-count-down="editCountDownChanged">Successfully Edited!</b-alert>
-        
-        <div class="div-table div-table-hover">
-            <div class="div-table-header div-table-row">
-                <div class="div-table-cell">Start Location</div>
-                <div class="div-table-cell">End Location</div>
-                <div class="div-table-cell">Date</div>
-                <div class="div-table-cell">Start Time</div>
-                <div class="div-table-cell">End Time</div>
-                <div class="div-table-cell">Driver</div>
-                <div class="div-table-cell">Notes</div>
-                <div class="div-table-cell">Added By</div>
-                <div class="div-table-cell"></div>
-            </div>
-            <div class="div-table-row" v-for="journey in descendingJourneys">
-                <div class="div-table-cell">{{ journey.start_location }}</div>
-                <div class="div-table-cell">{{ journey.end_location }}</div>
-                <div class="div-table-cell">{{ journey.date | date }}</div>
-                <div class="div-table-cell">{{ journey.start_time }}</div>
-                <div class="div-table-cell">{{ journey.end_time }}</div>
-                <div class="div-table-cell">{{ journey.driver_name }}</div>
-                <div class="div-table-cell">{{ journey.notes }}</div>
-                <div class="div-table-cell" >{{ journey.user.name }}</div>
-                <div class="div-table-cell space-around">
-                    <div>
-                        <a href="#" v-on:click.prevent="editJourney(journey)"><i class="fas fa-edit icon-action"></i></a>
-                    </div>
-                    <div>
-                        <a href="#" v-on:click.prevent="deleteJourney(journey.id)"><i class="fas fa-times-circle icon-action"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+        <table class="table table-hover">
+            <thead>
+                <th scope="col" class="">Start Location</th>
+                <th scope="col" class="">End Location</th>
+                <th scope="col" class="" >Date</th>
+                <th scope="col" class="">Start Time</th>
+                <th scope="col">End Time</th>
+                <th scope="col">Driver</th>
+                <th scope="col" class="w-25">Notes</th>
+                <th scope="col">Added By</th>
+                <th scope="col"></th>
+            </thead>
+            <tbody>
+                <tr v-for="journey in descendingJourneys">
+                    <td>{{ journey.start_location }}</td>
+                    <td>{{ journey.end_location }}</td>
+                    <td>{{ journey.date | date }}</td>
+                    <td>{{ journey.start_time }}</td>
+                    <td>{{ journey.end_time }}</td>
+                    <td>{{ journey.driver_name }}</td>
+                    <td>{{ journey.notes }}</td>
+                    <td>{{ journey.user.name }}</td>
+                    <td class="flex space-around">
+                        <div>
+                            <a href="#" v-on:click.prevent="editJourney(journey)"><i class="fas fa-edit icon-action"></i></a>
+                        </div>
+                        <div>
+                            <a href="#" v-on:click.prevent="deleteJourney(journey.id)"><i class="fas fa-times-circle icon-action"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 

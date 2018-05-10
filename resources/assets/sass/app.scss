@@ -23,47 +23,8 @@
   color: lighten(#355359, 15%);
 }
 
-.div-table {
+.flex {
   display: flex;
-  flex-flow: column nowrap;
-  font-size: .8rem;
-  margin: 0.5rem;
-  line-height: 1.5;
-  flex: 1 1 auto;
-}
-
-.div-table-hover > .div-table-row:hover:not(.div-table-header) {
-  background-color: rgba(0, 0, 0, 0.075);
-} 
-
-.div-table-header > .div-table-cell {
-  font-size: 0.9rem;
-  font-weight: bold;
-  border-bottom: 2px solid #477078;
-  border-top: 1px solid #477078;
-}
-
-.div-table-row {
-  width: 100%;
-  display: flex;
-  flex-flow: row nowrap;
-}
-
-.div-table-cell {
-  display: flex;
-  flex-flow: row nowrap;
-  flex-grow: 1;
-  flex-basis: 0;
-  padding-top: 1.5em;
-  padding-bottom: 1.5em;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-  word-break: break-word;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-width: 0px;
-  white-space: nowrap;
-  border-bottom: 1px solid #477078;
 }
 
 .space-around {
