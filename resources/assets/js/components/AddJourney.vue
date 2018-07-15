@@ -5,7 +5,8 @@
               @submit.prevent="onSubmit" 
               @keydown="form.errors.clear()" 
               novalidate
-              style="padding-bottom: 20px;">
+              style="padding-bottom: 20px;"
+              autocomplete="off">
             <div class="form-group">
                 <label for="start_location" class=" col-form-label text-md-right">Start Location</label>
                 <input id="start_location" 
