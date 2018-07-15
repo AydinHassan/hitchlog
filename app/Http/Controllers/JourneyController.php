@@ -97,7 +97,7 @@ class JourneyController extends Controller
             'start_time' => 'date_format:H:i',
             'end_time' => 'date_format:H:i',
             'driver_name' => 'nullable|max:255',
-            'notes' => 'nullable|max:512',
+            'notes' => 'nullable|max:2048',
         ]);
         
         $journey
