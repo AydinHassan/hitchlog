@@ -22,7 +22,7 @@ set('allow_anonymous_stats', false);
 
 // Hosts
 
-host('188.226.155.116')
+host('wildandwithout')
     ->set('deploy_path', '/var/www/hitch.wildandwithout.com');    
     
 // Tasks
