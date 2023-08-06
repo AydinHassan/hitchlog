@@ -10,11 +10,10 @@
         "laracasts/flash": "^3.0",
         "laravel/framework": "^8",
         "laravel/helpers": "*",
-        "laravel/ui": "^3.4",
-        "spatie/laravel-ignition": "^1.6"
+        "laravel/ui": "^3.4"
     },
     "require-dev": {
-        "filp/whoops": "^2.0",
+        "spatie/laravel-ignition": "^1.6",
         "fzaninotto/faker": "^1.4"
     },
     "autoload": {
