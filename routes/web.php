@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Route::resource('journey', 'JourneyController');
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
