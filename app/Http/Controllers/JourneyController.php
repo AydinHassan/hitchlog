@@ -78,6 +78,8 @@ class JourneyController extends Controller
      */
     public function edit(Journey $journey)
     {
+        $this->authorize('update', $journey);
+
         return view('journey.edit', ['journey' => $journey]);
     }
 
@@ -90,6 +92,8 @@ class JourneyController extends Controller
      */
     public function update(Request $request, Journey $journey)
     {
+        $this->authorize('update', $journey);
+
         $data = $request->validate([
             'start_location' => 'required|min:2|max:255',
             'end_location' => 'required|min:2|max:255',
@@ -115,6 +119,8 @@ class JourneyController extends Controller
      */
     public function destroy(Journey $journey)
     {
+        $this->authorize('delete', $journey);
+
         $journey->delete();
     }
 }

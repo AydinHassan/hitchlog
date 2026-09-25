@@ -13,8 +13,10 @@
         "laravel/ui": "^3.4"
     },
     "require-dev": {
-        "spatie/laravel-ignition": "^1.6",
-        "fzaninotto/faker": "^1.4"
+        "fzaninotto/faker": "^1.4",
+        "mockery/mockery": "^1.4",
+        "phpunit/phpunit": "^9.5",
+        "spatie/laravel-ignition": "^1.6"
     },
     "autoload": {
         "classmap": [
