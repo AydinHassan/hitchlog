@@ -16,14 +16,15 @@ set('git_tty', true);
 add('shared_files', ['.env']);
 add('shared_dirs', []);
 
-// Writable dirs by web server 
-add('writable_dirs', []);
+// Shared storage is already writable by www-data, and deploy cannot change ACLs on its files
+set('writable_mode', 'skip');
 set('allow_anonymous_stats', false);
 
 // Hosts
 
-host('wildandwithout')
-    ->set('deploy_path', '/var/www/hitch.wildandwithout.com');    
+host('imp')
+    ->set('remote_user', 'deploy')
+    ->set('deploy_path', '/var/www/hitch.wildandwithout.com');
     
 // Tasks
 
@@ -33,8 +34,4 @@ task('build', function () {
 
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
-
-// Migrate database before symlink new release.
-
-before('deploy:symlink', 'artisan:migrate');
 
