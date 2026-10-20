@@ -22,8 +22,9 @@ set('allow_anonymous_stats', false);
 
 // Hosts
 
-host('wildandwithout')
-    ->set('deploy_path', '/var/www/hitch.wildandwithout.com');    
+host('imp')
+    ->set('remote_user', 'deploy')
+    ->set('deploy_path', '/var/www/hitch.wildandwithout.com');
     
 // Tasks
 
