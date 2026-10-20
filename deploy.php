@@ -16,8 +16,8 @@ set('git_tty', true);
 add('shared_files', ['.env']);
 add('shared_dirs', []);
 
-// Writable dirs by web server 
-add('writable_dirs', []);
+// Shared storage is already writable by www-data, and deploy cannot change ACLs on its files
+set('writable_mode', 'skip');
 set('allow_anonymous_stats', false);
 
 // Hosts
