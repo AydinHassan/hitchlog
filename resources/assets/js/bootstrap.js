@@ -1,6 +1,7 @@
 import axios from 'axios';
 import moment from 'moment';
 import Form from './utils/Form';
+import 'bootstrap/dist/js/bootstrap.bundle';
 
 window.moment = moment;
 window.Form = Form;
