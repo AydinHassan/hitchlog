@@ -5,96 +5,84 @@
               @submit.prevent="onSubmit" 
               @keydown="form.errors.clear()" 
               novalidate
-              style="padding-bottom: 20px;"
-              autocomplete="off">
-            <div class="form-group">
-                <label for="start_location" class=" col-form-label text-md-right">Start Location</label>
+                            autocomplete="off"
+              class="space-y-4">
+            <div>
+                <label for="start_location" class="field-label">Start Location</label>
                 <input id="start_location" 
                     type="text" 
-                    class="form-control"
+                    class="field-input"
                     v-bind:class="{ 'is-invalid': form.errors.has('start_location')}"
                     name="start_location"
                     required
                     autofocus
                     v-model="form.start_location"
                 >
-                <span class="invalid-feedback">
-                    <strong v-text="form.errors.get('start_location')"></strong>
-                </span>
+                <p class="field-error" v-if="form.errors.has('start_location')" v-text="form.errors.get('start_location')"></p>
             </div>
     
-            <div class="form-group">
-                <label for="end_location" class=" col-form-label text-md-right">End Location</label>
+            <div>
+                <label for="end_location" class="field-label">End Location</label>
                 <input id="end_location"
                        type="text"
-                       class="form-control"
+                       class="field-input"
                        v-bind:class="{ 'is-invalid': form.errors.has('end_location')}"
                        name="end_location"
                        required
                        autofocus
                        v-model="form.end_location"
                 >
-                <span class="invalid-feedback">
-                    <strong v-text="form.errors.get('end_location')"></strong>
-                </span>
+                <p class="field-error" v-if="form.errors.has('end_location')" v-text="form.errors.get('end_location')"></p>
             </div>
     
-            <div class="form-group">
-                <label for="date" class=" col-form-label text-md-right">Date</label>
+            <div>
+                <label for="date" class="field-label">Date</label>
                 <datepicker name="date" v-model="form.date"></datepicker>
-                <span class="invalid-feedback">
-                    <strong v-text="form.errors.get('date')"></strong>
-                </span>
+                <p class="field-error" v-if="form.errors.has('date')" v-text="form.errors.get('date')"></p>
             </div>
             
-            <div class="row">
-                <div class="col-sm-6 text-center">
+            <div class="grid grid-cols-2 gap-4 text-center">
+                <div>
                     <timepicker name="start_time" v-model="form.start_time">Start Time</timepicker>
                 </div>
-                <div class="col-sm-6 text-center">
+                <div>
                     <timepicker name="end_time" v-model="form.end_time">End Time</timepicker>
                 </div>
             </div>
             
-            <div class="form-group">
-                <label for="driver_name" class=" col-form-label text-md-right">Driver Name</label>
+            <div>
+                <label for="driver_name" class="field-label">Driver Name</label>
     
                 <input id="driver_name" 
                        type="text"
-                       class="form-control"
+                       class="field-input"
                        v-bind:class="{ 'is-invalid': form.errors.has('driver_name')}"
                        name="driver_name" 
                        autofocus 
                        v-model="form.driver_name"
                 >
-                <span class="invalid-feedback">
-                    <strong v-text="form.errors.get('driver_name')"></strong>
-                </span>
+                <p class="field-error" v-if="form.errors.has('driver_name')" v-text="form.errors.get('driver_name')"></p>
             </div>
     
-            <div class="form-group">
-                <label for="notes" class=" col-form-label text-md-right">Notes</label>
+            <div>
+                <label for="notes" class="field-label">Notes</label>
     
                 <textarea id="notes"
                           type="text"
-                          class="form-control"
+                          class="field-input"
                           v-bind:class="{ 'is-invalid': form.errors.has('notes')}"
                           name="notes"
                           autofocus
                           v-model="form.notes">
                 </textarea>
-                <span class="invalid-feedback">
-                    <strong v-text="form.errors.get('notes')"></strong>
-                </span>
+                <p class="field-error" v-if="form.errors.has('notes')" v-text="form.errors.get('notes')"></p>
             </div>
     
-            <div class="form-group mb-0" style="display: flex; justify-content: space-around">
-                <div class="">
-                    <button type="submit" class="btn btn-info button-primary" :disabled="form.errors.any()">Create Journey</button>
-                </div>
+            <div class="flex justify-center pt-2">
+                <button type="submit" class="btn btn-primary px-10" :disabled="form.errors.any()">Create Journey</button>
             </div>
         </form>
-        <countdown-alert dismissible variant="success" :show="successCountDown" @dismiss-count-down="countDownChanged">Successfully Added!</countdown-alert>
+        <countdown-alert class="mt-4" dismissible variant="success" :show="successCountDown" @dismiss-count-down="countDownChanged">Successfully Added!</countdown-alert>
     </div>
 </template>
 
@@ -148,7 +136,8 @@
                     .then(journey => {
                         bus.emit('journey.added', journey)
                         this.successCountDown = 4;
-                    })                
+                    })
+                    .catch(() => {})
             },
 
             countDownChanged (dismissCountDown) {

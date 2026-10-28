@@ -1,30 +1,29 @@
 <template>
-    <div class="form-group">
-        <label v-bind:id="name" class="col-form-label text-center"><slot></slot></label>
-        <section @click.stop style="">
-            <table style="margin: 0 auto">
+    <div>
+        <label v-bind:id="name" class="field-label"><slot></slot></label>
+        <section @click.stop>
+            <table class="mx-auto">
                 <tbody>
                     <tr class="text-center">
                         <td>
-                            <button type="button" class="btn btn-link btn-sm" @click="changeTime(1,1)">
+                            <button type="button" class="cursor-pointer px-2 py-1 text-sm text-brand hover:text-brand-dark" @click="changeTime(1,1)">
                                 <i class="fas fa-chevron-up"></i>
                             </button>
                         </td>
                         <td>&nbsp;</td>
                         <td>
-                            <button type="button" class="btn btn-link btn-sm" @click="changeTime(0,1)">
+                            <button type="button" class="cursor-pointer px-2 py-1 text-sm text-brand hover:text-brand-dark" @click="changeTime(0,1)">
                                 <i class="fas fa-chevron-up"></i>
                             </button>
                         </td>
                     </tr>
                     <tr>
-                        <td class="form-group">
+                        <td>
                             <input
                                     ref="hoursInput"
                                     type="tel"
                                     pattern="\d*"
-                                    class="form-control text-center"
-                                    style="width: 50px"
+                                    class="field-input w-12 px-1 text-center"
                                     @mouseup="selectInputValue"
                                     @keydown.prevent.up="changeTime(1, 1)"
                                     @keydown.prevent.down="changeTime(1, 0)"
@@ -35,14 +34,13 @@
                                     size="2"
                                     v-bind:aria-labelledby="name">
                         </td>
-                        <td>&nbsp;<b>:</b>&nbsp;</td>
-                        <td class="form-group">
+                        <td class="px-1 font-bold">:</td>
+                        <td>
                             <input
                                     ref="minutesInput"
                                     type="tel"
                                     pattern="\d*"
-                                    class="form-control text-center"
-                                    style="width: 50px"
+                                    class="field-input w-12 px-1 text-center"
                                     @mouseup="selectInputValue"
                                     @keydown.prevent.up="changeTime(0, 1)"
                                     @keydown.prevent.down="changeTime(0, 0)"
@@ -56,13 +54,13 @@
                     </tr>
                     <tr class="text-center">
                         <td>
-                            <button type="button" class="btn btn-link btn-sm" @click="changeTime(1,0)">
+                            <button type="button" class="cursor-pointer px-2 py-1 text-sm text-brand hover:text-brand-dark" @click="changeTime(1,0)">
                                 <i class="fas fa-chevron-down"></i>
                             </button>
                         </td>
                         <td>&nbsp;</td>
                         <td>
-                            <button type="button" class="btn btn-link btn-sm" @click="changeTime(0,0)">
+                            <button type="button" class="cursor-pointer px-2 py-1 text-sm text-brand hover:text-brand-dark" @click="changeTime(0,0)">
                                 <i class="fas fa-chevron-down"></i>
                             </button>
                         </td>

@@ -5,7 +5,6 @@
         :time-config="{ enableTimePicker: false }"
         :formats="{ input: 'dd MMM yyyy' }"
         :input-attrs="{ name: name, clearable: false }"
-        :ui="{ input: 'form-control' }"
         auto-apply
     ></vue-date-picker>
 </template>
