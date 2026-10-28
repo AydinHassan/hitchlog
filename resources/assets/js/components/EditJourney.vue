@@ -41,7 +41,7 @@
 
             <div class="form-group">
                 <label for="date" class=" col-form-label text-md-right">Date</label>
-                <datepicker name="date" v-model="form.date" :bootstrap-styling="true"></datepicker>
+                <datepicker name="date" v-model="form.date"></datepicker>
                 <span class="invalid-feedback">
                     <strong v-text="form.errors.get('date')"></strong>
                 </span>
@@ -105,8 +105,10 @@
 </template>
 
 <script>
-    import Datepicker from 'vuejs-datepicker';
-    import Timepicker from './TimePicker';
+    import Datepicker from './DatePicker.vue';
+    import Timepicker from './TimePicker.vue';
+    import CountdownAlert from './CountdownAlert.vue';
+    import bus from '../utils/bus';
     
     const startTime = new Date();
     startTime.setHours(10, 0, 0);
@@ -115,10 +117,10 @@
     endTime.setHours(11, 0, 0);
     
     export default {
-        components: {Datepicker, Timepicker},
+        components: {Datepicker, Timepicker, CountdownAlert},
         
         mounted () {
-            this.$root.$on('journey.edit', journey => {
+            bus.on('journey.edit', journey => {
                 this.id = journey.id;                
                 this.form.start_location = journey.start_location;
                 this.form.end_location = journey.end_location;
@@ -169,14 +171,14 @@
             
             cancelEdit () {
                 this.form.reset();
-                this.$root.$emit('journey.edit.cancel');
+                bus.emit('journey.edit.cancel');
             },
             onSubmit () {
                 this.form
                     .patch('/journey/' + this.id)
                     .then(journey => {
                         this.id = 0;
-                        this.$root.$emit('journey.edited', journey)
+                        bus.emit('journey.edited', journey)
                     })
             }
         }

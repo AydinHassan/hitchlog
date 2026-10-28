@@ -1,7 +1,7 @@
 <template>
     <div>
-        <b-alert variant="success" :show="deleteSuccessCountDown" @dismiss-count-down="deleteCountDownChanged">Successfully deleted!</b-alert>
-        <b-alert variant="success" :show="editSuccessCountDown" @dismiss-count-down="editCountDownChanged">Successfully Edited!</b-alert>
+        <countdown-alert variant="success" :show="deleteSuccessCountDown" @dismiss-count-down="deleteCountDownChanged">Successfully deleted!</countdown-alert>
+        <countdown-alert variant="success" :show="editSuccessCountDown" @dismiss-count-down="editCountDownChanged">Successfully Edited!</countdown-alert>
 
         <table class="table table-hover journeys-desktop">
             <thead>
@@ -19,7 +19,7 @@
                 <tr v-for="journey in descendingJourneys">
                     <td>{{ journey.start_location }}</td>
                     <td>{{ journey.end_location }}</td>
-                    <td>{{ journey.date | date }}</td>
+                    <td>{{ formatDate(journey.date) }}</td>
                     <td>{{ journey.start_time }}</td>
                     <td>{{ journey.end_time }}</td>
                     <td>{{ journey.driver_name }}</td>
@@ -56,7 +56,7 @@
                         <p class="text-grey-darker text-base pb-0">{{ journey.notes }}</p>
                     </div>
                     <div class="px-3 pb-3">
-                        <span class="inline-block bg-grey-lighter px-2 py-1 text-sm font-semibold text-grey-darker mr-2">{{ journey.date | date }}</span>
+                        <span class="inline-block bg-grey-lighter px-2 py-1 text-sm font-semibold text-grey-darker mr-2">{{ formatDate(journey.date) }}</span>
                         <span class="inline-block bg-grey-lighter px-2 py-1 text-sm font-semibold text-grey-darker mr-2">{{ journey.start_time }} - {{ journey.end_time }}</span>
                         <span class="inline-block bg-grey-lighter px-2 py-1 text-sm font-semibold text-grey-darker mr-2">{{ journey.user.name }}</span>
                     </div>
@@ -67,20 +67,21 @@
 </template>
 
 <script>
-    import EditJourney from './EditJourney';
-    
+    import CountdownAlert from './CountdownAlert.vue';
+    import bus from '../utils/bus';
+
     export default {
-        components: {EditJourney},
+        components: {CountdownAlert},
         
         mounted () {
             axios.get('/journey')
                 .then(response => this.setJourneys(response.data));
             
-            this.$root.$on('journey.added', journey => {
+            bus.on('journey.added', journey => {
                 this.addJourney(journey)
             });
             
-            this.$root.$on('journey.edited', journey => {
+            bus.on('journey.edited', journey => {
                 this.editSuccessCountDown = 4;
                 
                 this.removeJourney(journey.id);
@@ -98,7 +99,7 @@
         
         computed : {
             descendingJourneys() {
-                return this.journeys.sort((a, b) => {
+                return [...this.journeys].sort((a, b) => {
                     var aEndDateTime = this.journeyEndDateTime(a);
                     var bEndDateTime = this.journeyEndDateTime(b);
                     
@@ -158,15 +159,12 @@
             },
             
             editJourney(journey) {
-                this.$root.$emit('journey.edit', journey)
+                bus.emit('journey.edit', journey)
             },
-        },
-        
-        filters : {
-            date(date) {
+
+            formatDate(date) {
                 return date.format('Do MMM YYYY');
-            }
+            },
         }
-        
     }
 </script>
