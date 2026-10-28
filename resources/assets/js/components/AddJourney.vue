@@ -41,7 +41,7 @@
     
             <div class="form-group">
                 <label for="date" class=" col-form-label text-md-right">Date</label>
-                <datepicker name="date" v-model="form.date" :bootstrap-styling="true"></datepicker>
+                <datepicker name="date" v-model="form.date"></datepicker>
                 <span class="invalid-feedback">
                     <strong v-text="form.errors.get('date')"></strong>
                 </span>
@@ -94,13 +94,15 @@
                 </div>
             </div>
         </form>
-        <b-alert dismissible variant="success" :show="successCountDown" @dismiss-count-down="countDownChanged">Successfully Added!</b-alert>
+        <countdown-alert dismissible variant="success" :show="successCountDown" @dismiss-count-down="countDownChanged">Successfully Added!</countdown-alert>
     </div>
 </template>
 
 <script>
-    import Datepicker from 'vuejs-datepicker';
-    import Timepicker from './TimePicker';
+    import Datepicker from './DatePicker.vue';
+    import Timepicker from './TimePicker.vue';
+    import CountdownAlert from './CountdownAlert.vue';
+    import bus from '../utils/bus';
     
     const startTime = new Date();
     startTime.setHours(10, 0, 0);
@@ -109,7 +111,7 @@
     endTime.setHours(11, 0, 0);
     
     export default {
-        components: {Datepicker, Timepicker},
+        components: {Datepicker, Timepicker, CountdownAlert},
         
         data() {
             return {
@@ -144,7 +146,7 @@
                 this.form
                     .post('/journey')
                     .then(journey => {
-                        this.$root.$emit('journey.added', journey)
+                        bus.emit('journey.added', journey)
                         this.successCountDown = 4;
                     })                
             },

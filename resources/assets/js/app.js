@@ -1,52 +1,36 @@
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 import './bootstrap';
 
-import Vue from 'vue';
-import { AlertPlugin } from 'bootstrap-vue';
+import { createApp } from 'vue';
+import bus from './utils/bus';
 
-Vue.use(AlertPlugin);
+import AddJourney from './components/AddJourney.vue';
+import EditJourney from './components/EditJourney.vue';
+import ListJourneys from './components/ListJourneys.vue';
 
-window.Vue = Vue;
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-import AddJourney from './components/AddJourney';
-import EditJourney from './components/EditJourney';
-import ListJourneys from './components/ListJourneys';
-
-Vue.component('add-journey', AddJourney);
-Vue.component('edit-journey', EditJourney);
-Vue.component('list-journeys', ListJourneys);
-
-const app = new Vue({
-    el: '#app',
-    
-    data : {
-        editing : false
+const app = createApp({
+    data() {
+        return {
+            editing: false,
+        };
     },
-    
-    mounted () {
-        this.$root.$on('journey.edit', journey => {
+
+    mounted() {
+        bus.on('journey.edit', () => {
             this.editing = true;
         });
-        
-        this.$root.$on('journey.edited', journey => {
+
+        bus.on('journey.edited', () => {
             this.editing = false;
         });
-        
-        this.$root.$on('journey.edit.cancel', () => {
+
+        bus.on('journey.edit.cancel', () => {
             this.editing = false;
         });
-    }
+    },
 });
 
+app.component('add-journey', AddJourney);
+app.component('edit-journey', EditJourney);
+app.component('list-journeys', ListJourneys);
+
+app.mount('#app');

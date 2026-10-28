@@ -87,7 +87,7 @@
                 type: String,
                 required: true
             },
-            value: {
+            modelValue: {
                 type: Date,
                 required: true
             },
@@ -103,6 +103,8 @@
             },
         },
 
+        emits: ['update:modelValue'],
+
         data () {
             return {
                 hours: 0,
@@ -113,11 +115,11 @@
         },
 
         mounted () {
-            this.updateByValue(this.value)
+            this.updateByValue(this.modelValue)
         },
         
         watch : {
-            value (value) {
+            modelValue (value) {
                 this.updateByValue(value)
             },
             hoursText (value) {
@@ -202,7 +204,7 @@
                 this.changeTime(isHour, e.deltaY < 0)
             },
             setTime () {
-                let time = this.value
+                let time = this.modelValue
                 if (isNaN(time.getTime())) {
                     time = new Date()
                     time.setHours(0)
@@ -222,7 +224,7 @@
                     min.setMinutes(this.min.getMinutes())
                     time = time < min ? min : time
                 }
-                this.$emit('input', new Date(time))
+                this.$emit('update:modelValue', new Date(time))
             },
             selectInputValue (e) {
                 // mouseup should be prevented!
