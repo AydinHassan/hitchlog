@@ -6,6 +6,7 @@ import bus from './utils/bus';
 import AddJourney from './components/AddJourney.vue';
 import EditJourney from './components/EditJourney.vue';
 import ListJourneys from './components/ListJourneys.vue';
+import UserMenu from './components/UserMenu.vue';
 
 const app = createApp({
     data() {
@@ -32,5 +33,6 @@ const app = createApp({
 app.component('add-journey', AddJourney);
 app.component('edit-journey', EditJourney);
 app.component('list-journeys', ListJourneys);
+app.component('user-menu', UserMenu);
 
 app.mount('#app');

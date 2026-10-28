@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,600,700&display=swap");
+@import "tailwindcss";
+
+@source "../../views";
+@source "../js";
+
+@theme {
+    --font-sans: "Raleway", ui-sans-serif, system-ui, sans-serif;
+    --color-brand: #2a7f8f;
+    --color-brand-dark: #1f6370;
+    --color-ink: #355359;
+}
+
+@layer base {
+    body {
+        @apply bg-slate-100 text-slate-800 antialiased;
+    }
+
+    [v-cloak] {
+        display: none;
+    }
+}
+
+@layer components {
+    .field-label {
+        @apply mb-1 block text-sm font-semibold text-slate-700;
+    }
+
+    .field-input {
+        @apply block w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-xs focus:border-brand focus:ring-2 focus:ring-brand/25 focus:outline-none;
+    }
+
+    .field-input.is-invalid {
+        @apply border-red-500 focus:border-red-500 focus:ring-red-500/25;
+    }
+
+    .field-error {
+        @apply mt-1 text-sm font-semibold text-red-600;
+    }
+
+    .btn {
+        @apply inline-flex cursor-pointer items-center justify-center rounded-md px-5 py-2.5 text-sm font-bold transition-colors disabled:cursor-not-allowed disabled:opacity-60;
+    }
+
+    .btn-primary {
+        @apply bg-brand text-white hover:bg-brand-dark;
+    }
+
+    .btn-outline {
+        @apply border border-brand text-brand hover:bg-brand hover:text-white;
+    }
+
+    .panel {
+        @apply rounded-md bg-white shadow-sm;
+    }
+}
+
+.dp__theme_light {
+    --dp-primary-color: var(--color-brand);
+}

@@ -3,65 +3,63 @@
         <countdown-alert variant="success" :show="deleteSuccessCountDown" @dismiss-count-down="deleteCountDownChanged">Successfully deleted!</countdown-alert>
         <countdown-alert variant="success" :show="editSuccessCountDown" @dismiss-count-down="editCountDownChanged">Successfully Edited!</countdown-alert>
 
-        <table class="table table-hover journeys-desktop">
-            <thead>
-                <th scope="col" class="">Start Location</th>
-                <th scope="col" class="">End Location</th>
-                <th scope="col" class="" >Date</th>
-                <th scope="col" class="">Start Time</th>
-                <th scope="col">End Time</th>
-                <th scope="col">Driver</th>
-                <th scope="col" class="w-25">Notes</th>
-                <th scope="col">Added By</th>
-                <th scope="col"></th>
-            </thead>
-            <tbody>
-                <tr v-for="journey in descendingJourneys">
-                    <td>{{ journey.start_location }}</td>
-                    <td>{{ journey.end_location }}</td>
-                    <td>{{ formatDate(journey.date) }}</td>
-                    <td>{{ journey.start_time }}</td>
-                    <td>{{ journey.end_time }}</td>
-                    <td>{{ journey.driver_name }}</td>
-                    <td>{{ journey.notes }}</td>
-                    <td>{{ journey.user.name }}</td>
-                    <td class="flex space-around">
-                        <div>
-                            <a href="#" v-on:click.prevent="editJourney(journey)"><i class="fas fa-edit icon-action"></i></a>
-                        </div>
-                        <div>
-                            <a href="#" v-on:click.prevent="deleteJourney(journey.id)"><i class="fas fa-times-circle icon-action"></i></a>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <div class="journeys-mobile">
-            <template v-for="journey in descendingJourneys">
-                <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white mb-3">
-                    <div class="px-3 py-3">
-                        <div class="flex space-between">
-                            <div class="font-bold text-xl">{{ journey.start_location }} <i class="fas fa-arrow-circle-right px-2 color-purple-light"></i> {{ journey.end_location }}</div>
-                            <div class="flex space-around">
-                                <div>
-                                    <a href="#" v-on:click.prevent="editJourney(journey)"><i class="fas fa-edit icon-action-mobile"></i></a>
-                                </div>
-                                <div>
-                                    <a href="#" v-on:click.prevent="deleteJourney(journey.id)"><i class="fas fa-times-circle icon-action-mobile"></i></a>
-                                </div>
+        <div class="hidden overflow-x-auto sm:block">
+            <table class="w-full text-left text-sm">
+                <thead class="border-b-2 border-slate-200 text-slate-700">
+                    <tr>
+                        <th scope="col" class="px-3 py-3 font-bold">Start Location</th>
+                        <th scope="col" class="px-3 py-3 font-bold">End Location</th>
+                        <th scope="col" class="px-3 py-3 font-bold">Date</th>
+                        <th scope="col" class="px-3 py-3 font-bold">Start Time</th>
+                        <th scope="col" class="px-3 py-3 font-bold">End Time</th>
+                        <th scope="col" class="px-3 py-3 font-bold">Driver</th>
+                        <th scope="col" class="w-1/4 px-3 py-3 font-bold">Notes</th>
+                        <th scope="col" class="px-3 py-3 font-bold">Added By</th>
+                        <th scope="col" class="px-3 py-3"><span class="sr-only">Actions</span></th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200">
+                    <tr v-for="journey in descendingJourneys" :key="journey.id" data-journey-row class="hover:bg-white">
+                        <td class="px-3 py-3">{{ journey.start_location }}</td>
+                        <td class="px-3 py-3">{{ journey.end_location }}</td>
+                        <td class="px-3 py-3 whitespace-nowrap">{{ formatDate(journey.date) }}</td>
+                        <td class="px-3 py-3">{{ journey.start_time }}</td>
+                        <td class="px-3 py-3">{{ journey.end_time }}</td>
+                        <td class="px-3 py-3">{{ journey.driver_name }}</td>
+                        <td class="px-3 py-3">{{ journey.notes }}</td>
+                        <td class="px-3 py-3">{{ journey.user.name }}</td>
+                        <td class="px-3 py-2">
+                            <div class="flex items-center justify-end gap-3 text-2xl text-ink">
+                                <a href="#" class="hover:opacity-70" title="Edit" v-on:click.prevent="editJourney(journey)"><i class="fas fa-edit"></i></a>
+                                <a href="#" class="hover:opacity-70" title="Delete" v-on:click.prevent="deleteJourney(journey.id)"><i class="fas fa-times-circle"></i></a>
                             </div>
-                        </div>
-                        <p class="text-sm text-grey-dark flex items-center mb-3"><i class="fas fa-car pr-2"></i>{{ journey.driver_name }}</p>
-                        <p class="text-grey-darker text-base pb-0">{{ journey.notes }}</p>
-                    </div>
-                    <div class="px-3 pb-3">
-                        <span class="inline-block bg-grey-lighter px-2 py-1 text-sm font-semibold text-grey-darker mr-2">{{ formatDate(journey.date) }}</span>
-                        <span class="inline-block bg-grey-lighter px-2 py-1 text-sm font-semibold text-grey-darker mr-2">{{ journey.start_time }} - {{ journey.end_time }}</span>
-                        <span class="inline-block bg-grey-lighter px-2 py-1 text-sm font-semibold text-grey-darker mr-2">{{ journey.user.name }}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="space-y-3 sm:hidden">
+            <div v-for="journey in descendingJourneys" :key="journey.id" data-journey-card class="panel p-4">
+                <div class="flex items-start justify-between gap-3">
+                    <h3 class="text-lg font-bold">
+                        {{ journey.start_location }}
+                        <i class="fas fa-arrow-circle-right px-1 text-violet-400"></i>
+                        {{ journey.end_location }}
+                    </h3>
+                    <div class="flex shrink-0 gap-2 pt-1 text-lg text-indigo-500">
+                        <a href="#" class="hover:opacity-70" title="Edit" v-on:click.prevent="editJourney(journey)"><i class="fas fa-edit"></i></a>
+                        <a href="#" class="hover:opacity-70" title="Delete" v-on:click.prevent="deleteJourney(journey.id)"><i class="fas fa-times-circle"></i></a>
                     </div>
                 </div>
-            </template>    
+                <p v-if="journey.driver_name" class="mt-1 flex items-center text-sm text-slate-500"><i class="fas fa-car pr-2"></i>{{ journey.driver_name }}</p>
+                <p v-if="journey.notes" class="mt-3 text-slate-600">{{ journey.notes }}</p>
+                <div class="mt-3 flex flex-wrap gap-2 text-xs font-semibold text-slate-600">
+                    <span class="bg-slate-100 px-2 py-1">{{ formatDate(journey.date) }}</span>
+                    <span class="bg-slate-100 px-2 py-1">{{ journey.start_time }} - {{ journey.end_time }}</span>
+                    <span class="bg-slate-100 px-2 py-1">{{ journey.user.name }}</span>
+                </div>
+            </div>
         </div>
     </div>
 </template>
