@@ -5,12 +5,12 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+import './bootstrap';
 
 import Vue from 'vue';
-import Alert from 'bootstrap-vue/es/components/alert';
+import { AlertPlugin } from 'bootstrap-vue';
 
-Vue.use(Alert);
+Vue.use(AlertPlugin);
 
 window.Vue = Vue;
 
